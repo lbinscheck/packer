@@ -1,0 +1,20 @@
+{
+  "small": {
+    "grams": "200g",
+    "height": "23",
+    "width": "16",
+    "length": "2"
+  },
+  "medium": {
+    "grams": "400g",
+    "height": "26",
+    "width": "22",
+    "length": "2"
+  },
+  "large": {
+    "grams": "1000g",
+    "height": "26",
+    "width": "14",
+    "length": "10"
+  }
+}
