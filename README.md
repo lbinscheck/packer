@@ -12,6 +12,9 @@ Out of curiosity I have chosen to use ReactJs for this task.
 Because of some issues while handling the state in the app, I decided to use Redux to do so.
 The Redux implementation is actually pretty simple at the moment. I need to split the code
 and use the Redux combineReducers() function, when I do a refactoring of the code in the future.
+(Winter 2018)
+
+Now trying to refactor the project...
 
 ### Installing
 
