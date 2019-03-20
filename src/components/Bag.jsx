@@ -1,4 +1,3 @@
-/* eslint-disable react/destructuring-assignment */
 import React from 'react';
 import PropTypes from 'prop-types';
 import Counter from './Counter';
@@ -8,15 +7,17 @@ import Counter from './Counter';
  * Passes title and index props down to Counter]
  * @param {[Object]} props [index, height, width, length]
  */
-const Bag = props => (
+const Bag = ({
+  name, height, width, length, index,
+}) => (
   <div className="card">
-    <h1>{`${props.name} coffee bag`}</h1>
+    <h1>{`${name} coffee bag`}</h1>
     <div className="cardInfo">
-      <p>{`height: ${props.height} cm`}</p>
-      <p>{`width: ${props.width} cm`}</p>
-      <p>{`length: ${props.length} cm`}</p>
+      <p>{`height: ${height} cm`}</p>
+      <p>{`width: ${width} cm`}</p>
+      <p>{`length: ${length} cm`}</p>
     </div>
-    <Counter index={props.index} title="Enter number of bags:" />
+    <Counter index={index} title="Enter number of bags:" />
   </div>
 );
 

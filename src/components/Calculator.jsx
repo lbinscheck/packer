@@ -1,5 +1,4 @@
-/* eslint-disable react/destructuring-assignment */
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import RaisedButton from 'material-ui/RaisedButton';
@@ -12,11 +11,15 @@ import './css/calculator.css';
  * Starts the calculation of needed boxes.]
  * @extends Component
  */
-class Calculator extends Component {
-  constructor() {
-    super();
-    this.handleClick = this.handleClick.bind(this);
-  }
+function Calculator(props) {
+  const {
+    dispatch,
+    smallcount,
+    mediumcount,
+    largecount,
+    boxlength,
+    boxescount,
+  } = props;
 
   /**
    * [handleClick dispatches the boxesCount action, which receives the
@@ -25,53 +28,51 @@ class Calculator extends Component {
    * Before the dispatch is executed, the boxlength will be set to 30 if it was
    * received smaller.]
    */
-  handleClick() {
+  const handleClick = () => {
     // eslint-disable-next-line react/destructuring-assignment
-    if (this.props.boxlength >= 30) {
+    if (boxlength >= 30) {
       const boxPacker = new Packer(
-        this.props.smallcount,
-        this.props.mediumcount,
-        this.props.largecount,
-        this.props.boxlength,
+        smallcount,
+        mediumcount,
+        largecount,
+        boxlength,
       );
-      this.props.dispatch(boxesCount(boxPacker.packAllPackages()));
+      dispatch(boxesCount(boxPacker.packAllPackages()));
     } else {
       const defaultLength = Number(30);
-      this.props.dispatch(boxLengthChange(defaultLength));
+      dispatch(boxLengthChange(defaultLength));
       const boxPacker = new Packer(
-        this.props.smallcount,
-        this.props.mediumcount,
-        this.props.largecount,
+        smallcount,
+        mediumcount,
+        largecount,
         defaultLength,
       );
-      this.props.dispatch(boxesCount(boxPacker.packAllPackages()));
+      dispatch(boxesCount(boxPacker.packAllPackages()));
     }
-  }
+  };
 
-  render() {
-    return (
-      <div className="card">
-        <div className="calculatorWrapper">
-          <div className="calculatorButton"><RaisedButton label="Calculate" onClick={this.handleClick} primary /></div>
-          <div className="calculatorH2">
-            <h1>{this.props.boxescount}</h1>
-          </div>
-          <div className="calculatorH1">
-            <h1>
-              {
+  return (
+    <div className="card">
+      <div className="calculatorWrapper">
+        <div className="calculatorButton"><RaisedButton label="Calculate" onClick={handleClick} primary /></div>
+        <div className="calculatorH2">
+          <h1>{boxescount}</h1>
+        </div>
+        <div className="calculatorH1">
+          <h1>
+            {
               (() => {
-                if (this.props.boxescount === 1) {
+                if (boxescount === 1) {
                   return '... box needed';
                 }
                 return '... boxes needed';
               })()
             }
-            </h1>
-          </div>
+          </h1>
         </div>
       </div>
-    );
-  }
+    </div>
+  );
 }
 
 Calculator.propTypes = {
@@ -95,4 +96,5 @@ const mapStateToProps = state => ({
   boxlength: state.boxlength,
   boxescount: state.boxescount,
 });
+
 export default connect(mapStateToProps)(Calculator);

@@ -28,4 +28,4 @@ and use the Redux combineReducers() function, when I do a refactoring of the cod
 
 #### Author
 
-* **Lennart Binscheck** - [lbinscheck](https://github.com/lbinscheck)
+* **Lennart Binscheck** - [lbinscheck](https://gitlab.com/lbinscheck)
